@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to persona_questions_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_persona_question_path(@persona_question), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show persona_question</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Persona:</dt>
+  <dd><%= @persona_question.persona %></dd>
+
+  <dt>Question:</dt>
+  <dd><%= @persona_question.question %></dd>
+
+</dl>

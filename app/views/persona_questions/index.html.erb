@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to new_persona_question_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Persona question
+  <% end %>
+  <h1>Listing persona_questions</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Persona</th>
+            <th>Question</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @persona_questions) do |persona_question| %>
+            <td><%= persona_question.persona %></td>
+            <td><%= persona_question.question %></td>
+            <td><%= link_to 'Show', persona_question %></td>
+        <td><%= link_to 'Edit', edit_persona_question_path(persona_question) %></td>
+        <td><%= link_to 'Destroy', persona_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
