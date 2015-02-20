@@ -1,0 +1,32 @@
+<div class="page-header">
+  <%= link_to answers_path, :class => 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_answer_path(@answer), :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show answer</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Body:</dt>
+  <dd><%= @answer.body %></dd>
+
+  <dt>Insight:</dt>
+  <dd><%= @answer.insight %></dd>
+
+  <dt>Image:</dt>
+  <dd><%= @answer.image %></dd>
+
+  <dt>Question:</dt>
+  <dd><%= @answer.question %></dd>
+
+  <dt>Interview:</dt>
+  <dd><%= @answer.interview %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @answer.user %></dd>
+
+</dl>

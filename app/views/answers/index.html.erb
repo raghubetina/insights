@@ -1,0 +1,39 @@
+<div class="page-header">
+  <%= link_to new_answer_path, :class => 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Answer
+  <% end %>
+  <h1>Listing answers</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Body</th>
+            <th>Insight</th>
+            <th>Image</th>
+            <th>Question</th>
+            <th>Interview</th>
+            <th>User</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @answers) do |answer| %>
+            <td><%= answer.body %></td>
+            <td><%= answer.insight %></td>
+            <td><%= answer.image %></td>
+            <td><%= answer.question %></td>
+            <td><%= answer.interview %></td>
+            <td><%= answer.user %></td>
+            <td><%= link_to 'Show', answer %></td>
+        <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
+        <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
