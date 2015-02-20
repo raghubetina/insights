@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  held_on: 2015-02-20
+  name: MyString
+  company: MyString
+  user_id: 
+  persona_id: 
+  notes: MyText
+
+two:
+  held_on: 2015-02-20
+  name: MyString
+  company: MyString
+  user_id: 
+  persona_id: 
+  notes: MyText

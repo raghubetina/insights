@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :interviews
+
   resources :questions
 
   resources :persona_questions
