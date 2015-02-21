@@ -27,9 +27,9 @@
             <td><%= answer.body %></td>
             <td><%= answer.insight %></td>
             <td><%= answer.image %></td>
-            <td><%= answer.question %></td>
-            <td><%= answer.interview %></td>
-            <td><%= answer.user %></td>
+            <td><%= answer.question.body %></td>
+            <td><%= answer.interview.name %></td>
+            <td><%= answer.user.email %></td>
             <td><%= link_to 'Show', answer %></td>
         <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
         <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

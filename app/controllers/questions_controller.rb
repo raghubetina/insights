@@ -1,6 +1,23 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+  def from_persona
+    @question = Question.new
+    @question.body = params[:body]
+
+    respond_to do |format|
+      if @question.save
+        @question.personas << Persona.find(params[:persona_id])
+        format.html { redirect_to :back, notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: @question }
+      else
+        format.html { render :new }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # GET /questions
   # GET /questions.json
   def index

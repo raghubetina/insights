@@ -4,16 +4,15 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Panel title</h3>
+    <h3 class="panel-title">
+      <%= @interview.name %>
+      <small>
+        <%= @interview.held_on.strftime('%B %e, %Y') %>
+      </small>
+    </h3>
   </div>
   <div class="panel-body">
     <dl class="dl-horizontal">
-      <dt>Held on:</dt>
-      <dd><%= @interview.held_on.strftime('%B %e, %Y') %></dd>
-
-      <dt>Name:</dt>
-      <dd><%= @interview.name %></dd>
-
       <dt>Company:</dt>
       <dd><%= @interview.company %></dd>
 
@@ -46,6 +45,25 @@
     <% @interview.persona.questions.each do |question| %>
       <li class="list-group-item">
         <h3><%= question.body %></h3>
+        <ul class="list-group">
+        <% question.answers.each do |answer| %>
+          <li class="list-group-item">
+            <dl class="dl-horizontal">
+              <dt>Captured by</dt>
+              <dd><%= answer.user.email %></dd>
+
+              <dt>Answer</dt>
+              <dd><%= answer.body %></dd>
+
+              <dt>Insight</dt>
+              <dd><%= answer.insight %></dd>
+
+              <dt></dt>
+              <dd><%= image_tag answer.image, :class => "img-responsive" %></dd>
+            </dl>
+          </li>
+        <% end %>
+        </ul>
         <%= form_for question.answers.build :interview => @interview do |f| %>
           <div class="form-group">
             <%= f.label :body, :class => "sr-only" %>
@@ -59,6 +77,9 @@
             <%= f.label :image, :class => "sr-only" %>
             <%= f.file_field :image, :class => "form-control" %>
           </div>
+
+          <%= f.hidden_field :question_id %>
+          <%= f.hidden_field :interview_id %>
 
           <%= f.submit "Add", :class => "btn btn-success btn-block" %>
         <% end %>

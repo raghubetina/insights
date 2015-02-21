@@ -7,18 +7,33 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show persona</h1>
+  <h1>Persona: <%= @persona.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @persona.name %></dd>
-
-</dl>
-
-
-<ul>
+<ul class="list-group">
   <% @persona.questions.each do |question| %>
-    <li><%= question.body %></li>
+    <li class="list-group-item"><%= question.body %></li>
   <% end %>
+  <li class="list-group-item">
+    <%= form_for(PersonaQuestion.new(:persona => @persona), :html => { :role => "form" }) do |f| %>
+
+      <%= f.hidden_field :persona_id %>
+
+      <div class="form-group">
+        <%= f.label :question, :class => "sr-only" %>
+        <%= f.collection_select :question_id, Question.all, :id, :body, {}, :class => "form-control" %>
+      </div>
+
+      <%= f.submit "Add Existing Question", :class => "btn btn-primary" %>
+    <% end %>
+  </li>
+  <li class="list-group-item">
+    <%= form_tag question_from_persona_path(@persona) do %>
+      <div class="form-group">
+        <%= text_area_tag :body, nil, :class => "form-control", :placeholder => "Write a new question" %>
+      </div>
+
+      <%= submit_tag "Create New Question", :class => "btn btn-primary" %>
+    <% end %>
+  </li>
 </ul>

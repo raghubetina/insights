@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'personas#index'
 
+  post 'questions/persona/:persona_id' => 'questions#from_persona', :as => 'question_from_persona'
+
   resources :answers
 
   resources :interviews

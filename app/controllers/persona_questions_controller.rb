@@ -28,7 +28,7 @@ class PersonaQuestionsController < ApplicationController
 
     respond_to do |format|
       if @persona_question.save
-        format.html { redirect_to @persona_question, notice: 'Persona question was successfully created.' }
+        format.html { redirect_to :back, notice: 'Persona question was successfully created.' }
         format.json { render :show, status: :created, location: @persona_question }
       else
         format.html { render :new }
