@@ -20,8 +20,8 @@
 
     <tbody>
       <%= content_tag_for(:tr, @persona_questions) do |persona_question| %>
-            <td><%= persona_question.persona %></td>
-            <td><%= persona_question.question %></td>
+            <td><%= persona_question.persona.name %></td>
+            <td><%= persona_question.question.body %></td>
             <td><%= link_to 'Show', persona_question %></td>
         <td><%= link_to 'Edit', edit_persona_question_path(persona_question) %></td>
         <td><%= link_to 'Destroy', persona_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

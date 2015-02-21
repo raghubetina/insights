@@ -15,3 +15,10 @@
   <dd><%= @persona.name %></dd>
 
 </dl>
+
+
+<ul>
+  <% @persona.questions.each do |question| %>
+    <li><%= question.body %></li>
+  <% end %>
+</ul>

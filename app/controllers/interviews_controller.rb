@@ -25,6 +25,7 @@ class InterviewsController < ApplicationController
   # POST /interviews.json
   def create
     @interview = Interview.new(interview_params)
+    @interview.user = current_user
 
     respond_to do |format|
       if @interview.save
@@ -69,6 +70,6 @@ class InterviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
-      params.require(:interview).permit(:held_on, :name, :company, :user_id, :persona_id, :notes)
+      params.require(:interview).permit(:held_on, :name, :company, :persona_id, :notes)
     end
 end

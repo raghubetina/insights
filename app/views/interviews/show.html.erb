@@ -20,13 +20,34 @@
   <dt>Company:</dt>
   <dd><%= @interview.company %></dd>
 
-  <dt>User:</dt>
-  <dd><%= @interview.user %></dd>
+  <dt>Interviewer:</dt>
+  <dd><%= @interview.user.email %></dd>
 
   <dt>Persona:</dt>
-  <dd><%= @interview.persona %></dd>
+  <dd><%= @interview.persona.name %></dd>
 
   <dt>Notes:</dt>
   <dd><%= @interview.notes %></dd>
 
 </dl>
+
+<ul>
+  <% @interview.persona.questions.each do |question| %>
+    <li>
+      <%= question.body %>
+      <%= form_for question.answers.build :interview => @interview do |f| %>
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area :body, :class => "form-control", :placeholder => "Capture an answer" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :insight %>
+          <%= f.text_area :insight, :class => "form-control", :placeholder => "Capture an insight" %>
+        </div>
+
+        <%= f.submit "Add", :class => "btn btn-success" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
