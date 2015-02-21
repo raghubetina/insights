@@ -4,4 +4,6 @@ class Persona < ActiveRecord::Base
   has_many :persona_questions
   has_many :questions, :through => :persona_questions
   has_many :interviews
+
+  validates :name, :presence => true
 end

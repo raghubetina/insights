@@ -1,57 +1,70 @@
 <div class="page-header">
-  <%= link_to interviews_path, :class => 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_interview_path(@interview), :class => 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show interview</h1>
+
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Held on:</dt>
-  <dd><%= @interview.held_on %></dd>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>Held on:</dt>
+      <dd><%= @interview.held_on.strftime('%B %e, %Y') %></dd>
 
-  <dt>Name:</dt>
-  <dd><%= @interview.name %></dd>
+      <dt>Name:</dt>
+      <dd><%= @interview.name %></dd>
 
-  <dt>Company:</dt>
-  <dd><%= @interview.company %></dd>
+      <dt>Company:</dt>
+      <dd><%= @interview.company %></dd>
 
-  <dt>Interviewer:</dt>
-  <dd><%= @interview.user.email %></dd>
+      <dt>Interviewer:</dt>
+      <dd><%= @interview.user.email %></dd>
 
-  <dt>Persona:</dt>
-  <dd><%= @interview.persona.name %></dd>
+      <dt>Persona:</dt>
+      <dd><%= @interview.persona.name %></dd>
 
-  <dt>Notes:</dt>
-  <dd><%= @interview.notes %></dd>
+      <dt>Notes:</dt>
+      <dd><%= @interview.notes %></dd>
 
-</dl>
 
-<ul>
-  <% @interview.persona.questions.each do |question| %>
-    <li>
-      <%= question.body %>
-      <%= form_for question.answers.build :interview => @interview do |f| %>
-        <div class="form-group">
-          <%= f.label :body %>
-          <%= f.text_area :body, :class => "form-control", :placeholder => "Capture an answer" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :insight %>
-          <%= f.text_area :insight, :class => "form-control", :placeholder => "Capture an insight" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :image %>
-          <%= f.file_field :image, :class => "form-control" %>
-        </div>
-
-        <%= f.submit "Add", :class => "btn btn-success" %>
+    </dl>
+    <div class="btn-group btn-group-justified">
+      <%= link_to interviews_path, :class => 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-list-alt"></span>
+        Back
       <% end %>
-    </li>
-  <% end %>
-</ul>
+      <%= link_to edit_interview_path(@interview), :class => 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Edit
+      <% end %>
+    </div>
 
+  </div>
+
+
+  <ul class="list-group">
+    <% @interview.persona.questions.each do |question| %>
+      <li class="list-group-item">
+        <h3><%= question.body %></h3>
+        <%= form_for question.answers.build :interview => @interview do |f| %>
+          <div class="form-group">
+            <%= f.label :body, :class => "sr-only" %>
+            <%= f.text_area :body, :class => "form-control", :placeholder => "Capture an answer" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :insight, :class => "sr-only" %>
+            <%= f.text_area :insight, :class => "form-control", :placeholder => "Capture an insight" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :image, :class => "sr-only" %>
+            <%= f.file_field :image, :class => "form-control" %>
+          </div>
+
+          <%= f.submit "Add", :class => "btn btn-success btn-block" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+
+</div>
